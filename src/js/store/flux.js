@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			characters: []
+			characters: [],
+			favorites: []
 		},
 		actions: {
 			fetchCharacters: () => {
@@ -12,7 +13,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch((err) => console.error(err))
 			},
-
+			toggleFavorite: (character) => {
+				const store = getStore();
+				const favorites = [...store.favorites];
+				const index = favorites.findIndex(fav => fav.uid === character.uid);
+				
+				if (index === -1) {
+					favorites.push(character);
+				} else {
+					favorites.splice(index, 1);
+				}
+				
+				setStore({ favorites });
+			}
 		}
 	};
 }
