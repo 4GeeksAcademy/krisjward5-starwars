@@ -30,14 +30,14 @@ export default function StarshipsCard() {
         <div className="cardbg d-flex col-10 overflow-auto mt-5 mx-auto">
             {starships.map((starship, index) => (
                 <div className="card" style={{ minWidth: "22rem" }} key={index}>
-                    <img src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`} alt={starship.name} />
+                    <img src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`} />
                     <div className="card-body">
                         <h5 className="card-title">{starship.name}</h5>
                     </div>
-                    <div className="Cardbtn">
+                    {/* <div className="Cardbtn">
                         <Link className="secondpagebutton" to={"/starship-description/" + starship.uid}>Learn More</Link> 
                         <Button className="secondpagebutton" onClick = {() => {handleFavorite(starship.name)}}>Favorite</Button>
-                    </div>
+                    </div> */}
                 </div>
             ))}
         </div>

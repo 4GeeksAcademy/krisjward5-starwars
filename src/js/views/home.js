@@ -1,18 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
-import { Context } from "../store/appContext.js";
-import { CharecterCard } from "../component/PeopleCard.js";
-import { PlanetCard } from "../component/PlanetsCard.js";
-import { StarshipsCard } from "../component/StarshipsCard.js";
+import CharacterCard from "../component/CharecterCard";
+import PlanetsCard from "../component/PlanetsCard";
+import StarshipsCard from "../component/StarshipsCard"
 
-export const Home = () => {
-	// const { store, actions } = useContext(Context);
+export const Home = () => (
 
-	return (
 		<div>
-			<CharecterCard/>
-			<PlanetCard/>
+			<CharacterCard/>
+			<PlanetsCard/>
 			<StarshipsCard/>
 		</div>
-	);
-};
+	
+);

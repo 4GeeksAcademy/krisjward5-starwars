@@ -1,45 +1,39 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			characters: [],
 			favorites: [],
-			planets: [],
 		},
 		actions: {
-			fetchCharacters: () => {
-				fetch('https://www.swapi.tech/api/people?limit=100')
-					.then(res => res.json())
-					.then((payload) => {
-						setStore({ characters: payload.results })
-					})
-					.catch((err) => console.error(err))
+
+			addFavorites: (item) => {
+				setStore({favorites: [...getStore().favorites, item]})
+			}, 
+
+			deleteFavorites: (item) => {
+				setStore({favorites: getStore().favorites.filter((x)=>{return x!=item})})
 			},
-
-			fetchPlanets: () => {
-				fetch('https://www.swapi.tech/api/planets?limit=100')
-				.then(res => res.json())
-				.then((payload) => {
-					setStore({ planets: payload.results })
-				})
-				.catch((err) => console.error(err))
-		},
-
-
-
-			toggleFavorite: (character) => {
+			
+			exampleFunction: () => {
+				getActions().changeColor(0, "green");
+			},
+			loadSomeData: () => {
+				/**
+					fetch().then().then(data => setStore({ "foo": data.bar }))
+				*/
+			},
+			changeColor: (index, color) => {
+				//get the store
 				const store = getStore();
-				const favorites = [...store.favorites];
-				const index = favorites.findIndex(fav => fav.uid === character.uid);
-				
-				if (index === -1) {
-					favorites.push(character);
-				} else {
-					favorites.splice(index, 1);
-				}
-				
-				setStore({ favorites });
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const demo = store.demo.map((elm, i) => {
+					if (i === index) elm.background = color;
+					return elm;
+				});
+				//reset the global store
+				setStore({ demo: demo });
 			}
 		}
 	};
-}
-export default getState
+};
+export default getState;
