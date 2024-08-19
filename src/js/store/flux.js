@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
-			favorites: []
+			favorites: [],
+			planets: [],
 		},
 		actions: {
 			fetchCharacters: () => {
@@ -13,6 +14,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch((err) => console.error(err))
 			},
+
+			fetchPlanets: () => {
+				fetch('https://www.swapi.tech/api/planets?limit=100')
+				.then(res => res.json())
+				.then((payload) => {
+					setStore({ planets: payload.results })
+				})
+				.catch((err) => console.error(err))
+		},
+
+
+
 			toggleFavorite: (character) => {
 				const store = getStore();
 				const favorites = [...store.favorites];
