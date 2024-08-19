@@ -5,12 +5,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			addFavorites: (item) => {
-				setStore({favorites: [...getStore().favorites, item]})
-			}, 
+			 addFavorites: (item) => {
+                const store = getStore();
+                if (!store.favorites.includes(item)) {
+                    setStore({ favorites: [...store.favorites, item] });
+                }
+            },
 
-			deleteFavorites: (item) => {
-				setStore({favorites: getStore().favorites.filter((x)=>{return x!=item})})
+            deleteFavorites: (item) => {
+                const store = getStore();
+                setStore({ favorites: store.favorites.filter((x) => x !== item) });
 			},
 			
 			exampleFunction: () => {

@@ -18,11 +18,11 @@ export default function StarshipsCard() {
 
     }, []);
 
-    const handleFavorite = (starship) => {
-        if (store.favorite.includes(starship)) {
-            actions.deleteFavorite(starship);
+    const handleFavorite = (item) => {
+        if (store.favorites.includes(item)) {
+            actions.deleteFavorites(item);
         } else {
-            actions.addFavorites(starship);
+            actions.addFavorites(item);
         }
     }
 
@@ -34,10 +34,10 @@ export default function StarshipsCard() {
                     <div className="card-body">
                         <h5 className="card-title">{starship.name}</h5>
                     </div>
-                    {/* <div className="Cardbtn">
-                        <Link className="secondpagebutton" to={"/starship-description/" + starship.uid}>Learn More</Link> 
-                        <Button className="secondpagebutton" onClick = {() => {handleFavorite(starship.name)}}>Favorite</Button>
-                    </div> */}
+                    <div className="Cardbtn">
+                        <Link className="secondpagebutton" to={"/starship-description/" + starship.uid}>Learn More</Link>
+                        <button className="secondpagebutton" onClick={() => { handleFavorite(starship.name) }}>Favorite </button>
+                    </div>
                 </div>
             ))}
         </div>

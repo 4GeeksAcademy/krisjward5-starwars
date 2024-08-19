@@ -19,11 +19,11 @@ export default function CharacterCard() {
 
     }, []);
 
-    const handleFavorite = (character) => {
-        if (store.favorite.includes(character)) {
-            actions.deleteFavorite(character);
+    const handleFavorite = (item) => {
+        if (store.favorites.includes(item)) {
+            actions.deleteFavorites(item);
         } else {
-            actions.addFavorites(character);
+            actions.addFavorites(item);
         }
     }
 
